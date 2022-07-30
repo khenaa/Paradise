@@ -1,0 +1,52 @@
+<!-- HEADER PARTIALS -->
+<%- include("./partials/header") %>
+
+<!-- BODY -->
+<h2>Create a Paradise account</h2>
+
+<form action="/signup" method="POST">
+  <div class="form-input">
+    <label for="username">Name: </label>
+
+    <input
+      type="text"
+      placeholder="Username"
+      name="username"
+      id="username"
+      autofocus
+      required
+    />
+  </div>
+
+  <div class="form-input">
+    <label for="email">Email: </label>
+    <input
+      type="email"
+      placeholder="mail@xyz.com"
+      name="email"
+      id="email"
+      required
+    />
+  </div>
+
+  <div class="form-input">
+    <label for="password">Password: </label>
+    <input
+      type="password"
+      placeholder="o o o o "
+      name="password"
+      id="password"
+      required
+    />
+  </div>
+
+  <br />
+  <button class="btn btn-outline-info form-input">Sign up</button>
+</form>
+
+<div>
+  <p>Already have an account? <a href="/login">login</a></p>
+</div>
+
+<!-- FOOTER PARTIALS -->
+<%- include("./partials/footer") %>

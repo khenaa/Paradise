@@ -1,0 +1,107 @@
+<!-- HEADER PARTIALS -->
+<%- include ("../partials/header") %>
+
+<!-- CONTENT -->
+
+<section class="container product-info">
+  <section class="product-display">
+    <div class="product-display-large">
+      <img src="<%=product.imageCover%>" alt="" />
+    </div>
+  </section>
+  <section class="title-and-description">
+    <div class="title">
+      <h2><%=product.name%></h2>
+    </div>
+    <div class="product-price">
+      <h2>$ <%=product.price%></h2>
+    </div>
+    <div class="description">
+      <p><%=product.summary%></p>
+    </div>
+    <form action="/buy-now/<%=product._id%>" method="POST">
+      <button data-product-id="<%=product._id%>" type="submit" class="buy-now">
+        Buy Now
+      </button>
+    </form>
+
+    <a href="/add-to-cart/<%= product._id%>"
+      ><button class="add-to-cart">Add to Cart</button></a
+    >
+  </section>
+</section>
+
+<!-- REVIEWS -->
+
+<!-- ############ -->
+<div class="container reviews">
+  <div>
+    <%product.reviews.forEach((review)=>{ %>
+    <div class="mt-5 review-user">
+      <h5><%=review.author.username%></h5>
+    </div>
+    <div class="review-date">
+      <p>January 26, 2022</p>
+    </div>
+    <div class="review-text">
+      <p><%=review.text%></p>
+    </div>
+
+    <!-- review reply -->
+    <div class="container">
+      <%if(review.replies)%> <%review.replies.forEach((reply)=>{%>
+      <div class="container">
+        <div class="review-user">
+          <h5><%=reply.author.username%></h5>
+        </div>
+        <div class="review-date">
+          <p>January 26, 2022</p>
+        </div>
+        <div class="review-text">
+          <p><%=reply.text%></p>
+        </div>
+      </div>
+
+      <%})%>
+    </div>
+
+    <!-- review reply form -->
+    <div class="container">
+      <form
+        class="container"
+        action="/products/<%=product._id%>/reviews/<%=review._id%>/reply"
+        method="POST"
+      >
+        <input type="text" name="reply[text]" placeholder="reply" />
+        <button class="btn btn-sm btn-secondary">submit</button>
+      </form>
+    </div>
+
+    <%})%>
+  </div>
+
+  <!-- Review form -->
+  <div class="review-form">
+    <form
+      class="mt-5"
+      action="/products/<%=product._id%>/reviews"
+      method="POST"
+    >
+      <div>
+        <textarea
+          rows="4"
+          cols="50"
+          placeholder="Your review..."
+          name="review[text]"
+        ></textarea>
+      </div>
+      <button class="btn btn-sm btn-secondary">Add Review</button>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER PARTIALS -->
+<script src="https://js.stripe.com/v3/"></script>
+<script src="/js/stripe.js"></script>
+
+<%- include ("../partials/footer") %>

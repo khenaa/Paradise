@@ -1,0 +1,69 @@
+<!-- HEADER PARTALS -->
+<%-include("../partials/header")%>
+
+<!-- BODY -->
+<%if(products){ %>
+<section class="cart-products">
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%products.forEach((product)=>{ %>
+      <tr>
+        <td>
+          <div class="product__cart__item">
+            <img src="<%=product.product.imageCover%>" alt="" />
+            <p><%=product.product.name%></p>
+          </div>
+        </td>
+        <td class="quantity__item">
+          <div class="quantity">
+            <div class="pro-qty-2">
+              <span class="fa fa-angle-left dec qtybtn"></span>
+              <span><%=product.qty%></span>
+              <span class="fa fa-angle-right inc qtybtn"></span>
+            </div>
+          </div>
+        </td>
+        <td class="cart__price">$<%=product.price%></td>
+      </tr>
+
+      <%})%>
+      <tr>
+        <td></td>
+        <td>Total :</td>
+        <td>$<%=totalPrice%></td>
+      </tr>
+      <tr>
+        <td>
+          <form action="/checkout" method="POST">
+            <button
+              class="btn btn-outline-success"
+              type="submit"
+              id="checkout-button"
+            >
+              Checkout
+            </button>
+          </form>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<%}else{%>
+<h2>Your cart is currently empty</h2>
+<p>Browse the catalog and add some products to your shopping cart</p>
+<a href="/products" class="btn btn-lg btn-outline-primary" role="button"
+  >Continue Shopping</a
+>
+<%}%>
+
+<!-- FOOTER PARTIALS -->
+<%-include("../partials/footer")%>

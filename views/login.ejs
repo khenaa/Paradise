@@ -1,0 +1,28 @@
+<!-- HEADER PARTIALS -->
+<%- include("./partials/header") %>
+
+<!-- BODY -->
+<h2>Login in to Paradise</h2>
+
+<form action="/login" method="POST">
+  <div class="form-input">
+    <label for="username">Name: </label>
+
+    <input type="text" name="username" id="username" autofocus required />
+  </div>
+
+  <div class="form-input">
+    <label for="password">Password: </label>
+    <input type="password" name="password" id="password" required />
+  </div>
+
+  <br />
+  <button class="btn btn-outline-info form-input">Login</button>
+</form>
+
+<div class="form-input">
+  <p>No account yet? <a href="/signup">Sign up</a></p>
+</div>
+
+<!-- FOOTER PARTIALS -->
+<%- include("./partials/footer") %>
