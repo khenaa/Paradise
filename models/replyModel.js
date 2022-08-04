@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const replySchema = new mongoose.Schema({
   text: {
     type: String,
-    required: [true, "Review cannot be empty"],
+    required: [true, "Reply cannot be empty"],
   },
   author: {
     id: {
